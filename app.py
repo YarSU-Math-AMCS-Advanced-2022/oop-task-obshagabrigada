@@ -42,10 +42,8 @@ class App:
             print(f'У вас не хватает руб')
 
     def addFacility(self):
-        timeStart = input('Введите время открытия: ')
-        endTime = input('Введите время закрытия: ')
         name = input('Введите название: ')
-        newFacilty = Facility(timeStart,endTime,name)
+        newFacilty = Facility(name)
         self.listFacility.append(newFacilty)
         return newFacilty
     
@@ -57,18 +55,27 @@ class App:
     
     def printOrderStatusName(self,orderName:str):
         for order in self.orederList:
-            if(order.clientName == orderName):
+            if (order.clientName == orderName):
                 order.printOrder()
 
     def addSale(self):
         facilityName = input('Введите название заведения: ')
         productName = input('Введите название продукта: ')
-        discount = int(input('Введите размер скидки: '))
-
+        while True:
+            try:
+                discount = int(input('Введите размер скидки: '))
+                break
+            except Exception:
+                print('Некорректный ввод данных. Повторите ввод, пожалуйста.')        
         print('условие может быть 1) сумма 2) количество')
-        n = input()
-        if(n == 1):
-            sum = int(input('Введите сумму для применения акции'))
+        while True:
+            try:
+                n = int(input())
+                break
+            except Exception:
+                print('Некорректный ввод данных. Повторите ввод, пожалуйста.')
+        if (n == 1):
+            sum = int(input('Введите сумму для применения акции '))
             condition = lambda cart : True if cart.count_cost_cart() >= sum else False
         else:
             count = int(input('Введите количество для применения акции'))
@@ -108,7 +115,7 @@ class App:
 
     def CatalogFacility(self):
         for facility in self.listFacility:
-            print(facility.name)
+            print("Название ресторана:", facility.name)
             for product in facility.menu:
                 product.printProduct()
             
@@ -128,7 +135,7 @@ class App:
             
 
     def AddCourie(self):
-        print('Курьер был добален')
+        print('Курьер был добавлен')
         newCourie = Courier(6)
         self.courierList.append(newCourie)
     pass

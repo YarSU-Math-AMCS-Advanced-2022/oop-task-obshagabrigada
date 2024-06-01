@@ -12,7 +12,12 @@ def AppInterface(app:App):
         print('4: Добавить скидку')
         print('5: Работа приложения')
         print('-'*20)
-        n = int(input())
+        while True:
+            try:
+                n = int(input())
+                break
+            except Exception:
+                print('Некорректный ввод данных. Повторите ввод, пожалуйста.')
         print('-'*20)
         match n:
             case 1:
@@ -38,7 +43,12 @@ def FacilityInterface(facility:Facility):
         print('1: Добавить новое блюдо')
         print('2: Добавить повара')
         print('-'*20)
-        n = int(input())
+        while True:
+            try:
+                n = int(input())
+                break
+            except Exception:
+                print('Некорректный ввод данных. Повторите ввод, пожалуйста.')        
         print('-'*20)
         match n:
             case 1:

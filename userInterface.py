@@ -13,7 +13,12 @@ def UserInterface(user:Client,app:App):
         print('8: Увидеть статус заказа')
         print('9: Вывести отзывы о зведении')
         print('-'*20)
-        n = int(input())
+        while True:
+            try:
+                n = int(input())
+                break
+            except Exception:
+                print('Некорректный ввод данных.')
         print('-'*20)
         match n:
             case 1:
